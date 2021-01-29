@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  data = [];
 
-  constructor() {}
+
+  constructor(public dataService:DataService,private navCtrl: NavController ) {}
+  ngOnInit() {
+        this.getData();
+        
+    }
+    getMoreDetails()
+    {
+      this.navCtrl.navigateForward('/profile')
+    }
+     getData() {
+        this.data = this.dataService.getData();
+    }
 
 }
